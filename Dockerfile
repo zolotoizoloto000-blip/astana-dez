@@ -1,7 +1,14 @@
-FROM php:8.3-cli
-RUN docker-php-ext-install pdo_sqlite
+FROM php:8.3-cli-bookworm
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends libsqlite3-dev \
+    && docker-php-ext-install -j$(nproc) pdo_sqlite \
+    && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /app
 COPY . /app
-RUN mkdir -p /app/data /app/uploads && chmod -R 777 /app/data /app/uploads
+RUN mkdir -p /app/data /app/uploads \
+    && chmod -R 777 /app/data /app/uploads
+
 EXPOSE 10000
 CMD ["sh","-c","php -S 0.0.0.0:${PORT:-10000} router.php"]
