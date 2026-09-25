@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: astana-dez-control
+    runtime: docker
+    plan: free
+    healthCheckPath: /
+    envVars:
+      - key: ADMIN_USER
+        value: admin
+      - key: ADMIN_PASSWORD
+        value: admin
