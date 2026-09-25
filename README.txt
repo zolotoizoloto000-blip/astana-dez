@@ -1,26 +1,11 @@
-ASTANA DEZ CONTROL — GITHUB + RENDER
-====================================
+ASTANA DEZ CONTROL — GitHub + Render
 
-Готовая версия для загрузки в GitHub и запуска на Render через Docker.
-MySQL НЕ НУЖЕН. База SQLite создаётся автоматически при первом запуске.
+1. Upload all files from this archive to the ROOT of a GitHub repository.
+2. In Render create a Web Service from that repository. Runtime: Docker.
+3. In Render > Environment set only:
+   ADMIN_USERNAME = your login
+   ADMIN_PASSWORD = your password
+4. Deploy. Admin panel: https://YOUR-SERVICE.onrender.com/admin/
 
-АДМИН-ПАНЕЛЬ
-URL: https://ВАШ-САЙТ.onrender.com/admin/
-Логин: admin
-Пароль: admin
-
-В форме входа только 2 поля: логин и пароль. Никакие hash/password_hash вводить не нужно.
-Хэш создаётся автоматически внутри приложения и пользователю не показывается.
-
-КАК ЗАПУСТИТЬ
-1. Создайте новый репозиторий GitHub.
-2. Загрузите ВСЕ файлы из этого архива в корень репозитория.
-3. В Render: New -> Web Service -> подключите GitHub репозиторий.
-4. Render обнаружит Dockerfile. Создайте сервис.
-5. После Deploy откройте выданный адрес .onrender.com.
-6. Админка: /admin/ — admin / admin.
-
-ВАЖНО ДЛЯ ДЕМО НА БЕСПЛАТНОМ RENDER
-SQLite и загруженные через админку фотографии хранятся в файловой системе сервиса. На бесплатном Render изменения могут исчезнуть после пересборки/перезапуска. Для постоянного рабочего сайта клиента подключите постоянную БД/хранилище или платный persistent disk. Для демонстрации клиенту эта сборка запускается без отдельной базы.
-
-Перед передачей клиенту замените демонстрационный телефон/WhatsApp в админке.
+The admin login form asks only for Login and Password. No hash is required.
+The site uses SQLite for content and leads. On Render Free, the local filesystem is ephemeral: admin edits/uploads can reset after a redeploy/restart. For permanent client use, attach a persistent disk or external persistent database.

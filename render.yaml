@@ -5,7 +5,7 @@ services:
     plan: free
     healthCheckPath: /
     envVars:
-      - key: ADMIN_USER
+      - key: ADMIN_USERNAME
         value: admin
       - key: ADMIN_PASSWORD
         value: admin
